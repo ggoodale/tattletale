@@ -9,13 +9,14 @@ module TattletaleAssertions
         Tattletale.tattles.each do |tattle|
           e = tattle.exception
           next unless exception_classes.include?(e.class)
-          assert_block(build_message(message, 'Raised exception ? at ?', e, e.backtrace[0])){false}                
+          assert_block(build_message(message, 'Raised exception ? at ?', e.class, e.backtrace[0])){false}                
         end
+      rescue Test::Unit::AssertionFailedError
+        raise
       rescue => e
-        assert_block(build_message(message, 'Raised exception(s): ?', e)){false} if exception_classes.include? e.class
+        assert_block(build_message(message, 'Raised exception(s): ?', e.class)){false} if exception_classes.include? e.class
       end
     end
-    nil
   end
 end
 

@@ -13,3 +13,10 @@ Rake::GemPackageTask.new(spec) do |pkg|
   pkg.need_zip = true
   pkg.need_tar = true
 end
+
+task :default => :test
+
+Rake::TestTask.new(:test) do |t|
+  t.test_files = FileList['test/*.rb']
+  t.verbose = false
+end
