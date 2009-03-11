@@ -1,0 +1,1 @@
+tattletale is your hall monitor, your prison snitch: it tattles on all the exceptions raised during a particular test run, including messages, backtrace and the test that raised it.  All of your existing exception handlers will work as expected, so your code doesn't change.
