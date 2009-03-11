@@ -54,10 +54,14 @@ module Kernel
   alias :original_raise :raise
   def raise(*args)
     exception = args.empty? ? $! : args[0]
-    if exception.is_a?(String)
+    case exception
+    when Class
+      exception = exception.new
+    when String
       exception = RuntimeError.new(exception)
-      exception.set_backtrace(caller)
     end
+
+    exception.set_backtrace(caller)
     Tattletale.tattle(exception)
     original_raise(*args)
   end

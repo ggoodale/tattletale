@@ -12,12 +12,12 @@ Gem::Specification.new do |s|
   s.summary = %q{Exception logging for test environments.  Find out exactly what exceptions were thrown in your tests.}
   s.description = s.summary
    
-  s.files = ["MIT-LICENSE", "Rakefile", "README", "lib/tattletale.rb", "lib/tattletale/test/unit/tattletale_assertions.rb"]
+  s.files = ["MIT-LICENSE", "Rakefile", "README", "lib/tattletale.rb", "lib/tattletale/rspec/not_raise_matcher.rb", "lib/tattletale/test/unit/tattletale_assertions.rb"]
  
   s.has_rdoc = true
   s.extra_rdoc_files = [ "README"]
   s.rdoc_options = ["--main", "README", "--inline-source", "--line-numbers"]
  
-  s.test_files = ["test/tattletale_test.rb"]
+  s.test_files = ["test/rspec/rspec_matcher_test.rb", "test/unit/test_unit_assertions_test.rb"]
   s.require_path = 'lib'
 end

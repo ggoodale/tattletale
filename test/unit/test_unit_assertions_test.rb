@@ -25,6 +25,27 @@ class TattletaleTest < Test::Unit::TestCase
     assert_equal 1, Tattletale.tattles.length
   end
 
+  def test_expecting_rescued_exceptions
+    assert_raises(Test::Unit::AssertionFailedError) do
+      assert_raised_and_rescued(ArgumentError) do 
+        begin
+          raise "boom"
+        rescue RuntimeError => e
+          # we rescue, but the tattling is done...
+        end
+      end    
+    end
+  end
+
+  def test_expecting_unrescued_exceptions
+    assert_raises(Test::Unit::AssertionFailedError) do
+      assert_raised_and_rescued(RuntimeError) do 
+        raise "boom"
+      end    
+    end
+  end
+
+
   def test_raising_what_should_never_be_raised
     assert_raises(Test::Unit::AssertionFailedError) do
       assert_never_raised(RuntimeError) do 
